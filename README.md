@@ -29,7 +29,7 @@ DVR iCatch ──HTTP propriétaire──▶ add-on (pont + go2rtc) ──RTSP�
 1. **Paramètres → Modules complémentaires** (« Applications » dans les versions récentes) **→ Boutique → ⋮ → Dépôts**, ajoutez :
    `https://github.com/Phil-ibert/iCatch-Hass`
 2. Installez **iCatch DVR**. La construction télécharge go2rtc et prend quelques minutes.
-3. Onglet **Configuration** : renseignez au minimum le **mot de passe**, vérifiez l'adresse, le port et la liste des **caméras**.
+3. Onglet **Configuration** : renseignez au minimum le **mot de passe**, vérifiez l'adresse, le port et le **nombre de caméras**.
 4. **Démarrer**, puis ouvrez le **Journal**. Il liste les entrées où le DVR voit une image :
 
    ```
@@ -79,17 +79,17 @@ La carte doit pointer sur l'entité *aperçu*. Quand `entity` est une caméra, `
 | `dvr_host` | `192.168.1.108` | Adresse du DVR. |
 | `dvr_port` | `1027` | Port de l'**interface web** du DVR (pas le 554). |
 | `username` / `password` | `admin` / — | Compte du DVR. |
-| `cameras` | `1` à `5` | Entrées exposées (1 à 16). |
+| `camera_count` | `5` | Nombre d'entrées exposées : caméras 1 à N (1 à 16). |
 | `hd_video` | `copy` | `copy` : HD d'origine, sans réencodage. `h264_1080p` : réencodage processeur en H.264 réduit à 1080 lignes, lisible partout. `h264` : réencodage en pleine résolution (le plus gourmand). |
 | `api_password` | vide | Vide : mot de passe aléatoire généré et transmis à Home Assistant. Rempli : utilisateur `admin` avec ce mot de passe, pour ouvrir l'interface web go2rtc ou configurer l'intégration à la main. |
 | `log_level` | `info` | |
 
 ### Ajouter une caméra
 
-1. Ajoutez son numéro dans l'option `cameras` de l'add-on, puis redémarrez l'add-on.
+1. Augmentez `camera_count` dans l'add-on pour couvrir son entrée, puis redémarrez l'add-on.
 2. **Appareils et services → iCatch DVR → Configurer**, cochez la nouvelle caméra.
 
-Décocher une caméra dans l'intégration supprime ses entités et son appareil.
+Décocher une caméra dans l'intégration supprime ses entités et son appareil : c'est aussi la façon de masquer une entrée vide entre deux caméras branchées.
 
 ## Dépannage
 

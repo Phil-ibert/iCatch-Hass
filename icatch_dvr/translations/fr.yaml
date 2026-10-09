@@ -11,12 +11,13 @@ configuration:
   password:
     name: Mot de passe
     description: Mot de passe du compte utilisateur du DVR.
-  cameras:
-    name: Caméras
+  camera_count:
+    name: Nombre de caméras
     description: >-
-      Numéros des entrées caméra à exposer (1 à 16). Ajoutez un numéro quand vous
-      branchez une nouvelle caméra. Le journal de l'add-on liste au démarrage les
-      entrées où le DVR voit une image.
+      Le DVR expose les entrées 1 à N. Augmentez ce nombre quand vous branchez une
+      nouvelle caméra. Une entrée vide au milieu se masque en la décochant dans
+      l'intégration. Le journal de l'add-on liste au démarrage les entrées où le
+      DVR voit une image.
   hd_video:
     name: Vidéo HD
     description: >-

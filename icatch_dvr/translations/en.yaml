@@ -11,11 +11,12 @@ configuration:
   password:
     name: Password
     description: Password of the DVR user account.
-  cameras:
-    name: Cameras
+  camera_count:
+    name: Number of cameras
     description: >-
-      Camera inputs to expose (1 to 16). Add a number when you plug in a new
-      camera. At start-up the add-on log lists the inputs that carry a picture.
+      Exposes DVR inputs 1 to N. Increase it when you plug in a new camera. To
+      hide an empty input in the middle, untick it in the integration. At
+      start-up the add-on log lists the inputs that carry a picture.
   hd_video:
     name: HD video
     description: >-

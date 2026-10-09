@@ -27,7 +27,7 @@
     "error": {
       "cannot_connect": "L'add-on ne répond pas à cette adresse. Est-il démarré ?",
       "invalid_auth": "go2rtc refuse l'identifiant ou le mot de passe de l'API.",
-      "no_cameras": "L'add-on n'expose aucune caméra. Vérifiez son option « cameras ».",
+      "no_cameras": "L'add-on n'expose aucune caméra. Vérifiez son option « camera_count » (nombre de caméras).",
       "no_selection": "Sélectionnez au moins une caméra."
     },
     "abort": {
@@ -38,7 +38,7 @@
     "step": {
       "init": {
         "title": "Caméras",
-        "description": "Caméras qui ont des entités dans Home Assistant. Pour proposer d'autres entrées ici, ajoutez-les d'abord à l'option « cameras » de l'add-on.",
+        "description": "Caméras qui ont des entités dans Home Assistant. Pour proposer d'autres entrées ici, augmentez d'abord l'option « camera_count » (nombre de caméras) de l'add-on.",
         "data": {
           "cameras": "Caméras"
         }

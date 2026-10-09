@@ -1,6 +1,6 @@
 # iCatch DVR
 
-Passerelle entre un enregistreur **iCatch / iWatch** et Home Assistant. Pour chaque caméra listée dans l'option `cameras`, l'add-on publie deux flux RTSP, démarrés seulement quand quelqu'un regarde :
+Passerelle entre un enregistreur **iCatch / iWatch** et Home Assistant. Pour chaque caméra de 1 à `camera_count`, l'add-on publie deux flux RTSP, démarrés seulement quand quelqu'un regarde :
 
 - `camN_sd` : aperçu basse définition (H.264) ;
 - `camN_hd` : haute définition (H.265 sur les DVR récents, ou réencodé en H.264 selon `hd_video`).
@@ -11,7 +11,7 @@ Les entités caméra sont créées par l'intégration **iCatch DVR** du même d�
 
 - **Adresse du DVR / port web** : le port est celui de la page web du DVR (1027 sur l'iWatch), pas le 554.
 - **Identifiant / mot de passe** : un compte du DVR.
-- **Caméras** : numéros des entrées à exposer. Au démarrage, le journal indique les entrées où le DVR voit une image.
+- **Nombre de caméras** : l'add-on expose les entrées 1 à N. Au démarrage, le journal indique les entrées où le DVR voit une image. Une entrée vide au milieu se masque en la décochant dans l'intégration.
 - **Vidéo HD** : `copy` (HD d'origine), `h264_1080p` (réencodage processeur réduit à 1080 lignes), `h264` (réencodage en pleine résolution). Si la HD reste noire dans votre navigateur, passez à `h264_1080p`.
 - **Mot de passe go2rtc** : facultatif. Vide, un mot de passe aléatoire est généré et transmis à Home Assistant. Rempli, l'utilisateur est `admin` : utile pour l'interface web go2rtc ou une configuration manuelle de l'intégration.
 

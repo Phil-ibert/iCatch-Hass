@@ -1,5 +1,5 @@
 name: iCatch DVR
-version: "1.0.0"
+version: "1.0.1"
 slug: icatch_dvr
 description: >-
   Passerelle entre un enregistreur iCatch / iWatch et Home Assistant :
@@ -24,12 +24,7 @@ options:
   dvr_port: 1027
   username: admin
   password: null
-  cameras:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
+  camera_count: 5
   hd_video: copy
   log_level: info
 schema:
@@ -37,8 +32,7 @@ schema:
   dvr_port: port
   username: str
   password: password
-  cameras:
-    - int(1,16)
+  camera_count: int(1,16)
   hd_video: list(copy|h264_1080p|h264)
   api_password: password?
   log_level: list(debug|info|warning|error)

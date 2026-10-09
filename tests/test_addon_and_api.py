@@ -72,7 +72,7 @@ class GenGo2rtcTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             opts = os.path.join(tmp, "options.json")
             with open(opts, "w", encoding="utf-8") as fh:
-                json.dump({"cameras": [1, 2], "hd_video": "copy"}, fh)
+                json.dump({"camera_count": 2, "hd_video": "copy"}, fh)
             out = [os.path.join(tmp, n) for n in ("credentials.json", "go2rtc.json", "discovery.json")]
             res = subprocess.run([sys.executable, os.path.join(ROOT, "icatch_dvr", "app", "gen_go2rtc.py"),
                                   opts, *out], capture_output=True, text=True)
@@ -106,19 +106,38 @@ class GenGo2rtcTest(unittest.TestCase):
         with self.assertRaises(SystemExit):
             gen_go2rtc.build({"cameras": []}, CREDS)
 
+    def test_camera_count(self):
+        self.assertEqual(gen_go2rtc.camera_numbers({"camera_count": 5}), [1, 2, 3, 4, 5])
+        self.assertEqual(gen_go2rtc.camera_numbers({"camera_count": 40}), list(range(1, 17)))
+        self.assertEqual(gen_go2rtc.camera_numbers({"cameras": [4, 2]}), [2, 4])  # older option
+        cfg = gen_go2rtc.build({"camera_count": 2}, CREDS)
+        self.assertEqual(list(cfg["streams"]), ["cam1_sd", "cam1_hd", "cam2_sd", "cam2_hd"])
+
     def test_addon_defaults_match_generator(self):
-        """config.yaml defaults must produce a valid go2rtc config."""
+        """config.yaml defaults and schema must produce a valid go2rtc config."""
         with open(os.path.join(ROOT, "icatch_dvr", "config.yaml"), encoding="utf-8") as fh:
             text = fh.read()
         options = text.split("\noptions:\n")[1].split("\nschema:\n")[0]
         schema = text.split("\nschema:\n")[1]
-        cams = [int(line.strip()[2:]) for line in options.splitlines() if line.strip().startswith("- ")]
-        self.assertEqual(cams, [1, 2, 3, 4, 5])
+        self.assertIn("  camera_count: 5\n", options)
+        self.assertIn("  camera_count: int(1,16)\n", schema)
+        self.assertNotIn("cameras:", text)
         self.assertIn("hd_video: copy", options)
         modes = schema.split("hd_video: list(")[1].split(")")[0].split("|")
         self.assertEqual(tuple(modes), gen_go2rtc.HD_MODES)
         self.assertIn("discovery:\n  - icatch_dvr", text)
-        gen_go2rtc.build({"cameras": cams, "hd_video": "copy"}, CREDS)
+        cfg = gen_go2rtc.build({"camera_count": 5, "hd_video": "copy"}, CREDS)
+        self.assertEqual(len(cfg["streams"]), 10)
+
+    def test_translations_cover_schema(self):
+        with open(os.path.join(ROOT, "icatch_dvr", "config.yaml"), encoding="utf-8") as fh:
+            schema = fh.read().split("\nschema:\n")[1]
+        keys = [line.split(":")[0].strip() for line in schema.splitlines() if line.startswith("  ") and not line.startswith("    ")]
+        for lang in ("fr", "en"):
+            with open(os.path.join(ROOT, "icatch_dvr", "translations", f"{lang}.yaml"), encoding="utf-8") as fh:
+                text = fh.read()
+            for key in keys:
+                self.assertIn(f"\n  {key}:\n", text, f"{lang}.yaml misses {key}")
 
 
 # --- minimal aiohttp stand-in -------------------------------------------------

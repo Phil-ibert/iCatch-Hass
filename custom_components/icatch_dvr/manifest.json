@@ -1,7 +1,9 @@
 {
   "domain": "icatch_dvr",
   "name": "iCatch DVR",
-  "codeowners": ["@Phil-ibert"],
+  "codeowners": [
+    "@Phil-ibert"
+  ],
   "config_flow": true,
   "dependencies": [],
   "documentation": "https://github.com/Phil-ibert/iCatch-Hass",
@@ -9,5 +11,5 @@
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/Phil-ibert/iCatch-Hass/issues",
   "requirements": [],
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

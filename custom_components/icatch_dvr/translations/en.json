@@ -27,7 +27,7 @@
     "error": {
       "cannot_connect": "The add-on does not answer at this address. Is it started?",
       "invalid_auth": "go2rtc refused the API username or password.",
-      "no_cameras": "The add-on exposes no camera. Check its \"cameras\" option.",
+      "no_cameras": "The add-on exposes no camera. Check its \"camera_count\" option.",
       "no_selection": "Select at least one camera."
     },
     "abort": {
@@ -38,7 +38,7 @@
     "step": {
       "init": {
         "title": "Cameras",
-        "description": "Cameras that get entities in Home Assistant. To offer more inputs here, add them first to the add-on's \"cameras\" option.",
+        "description": "Cameras that get entities in Home Assistant. To offer more inputs here, first raise the add-on's \"camera_count\" option.",
         "data": {
           "cameras": "Cameras"
         }

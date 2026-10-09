@@ -52,10 +52,18 @@ def credentials(options: dict, path: str) -> dict:
     return creds
 
 
+def camera_numbers(options: dict) -> list[int]:
+    """Cameras 1..camera_count (an explicit 'cameras' list is still accepted)."""
+    if options.get("cameras"):
+        return sorted({int(c) for c in options["cameras"]})
+    count = int(options.get("camera_count") or 0)
+    return list(range(1, min(count, 16) + 1))
+
+
 def build(options: dict, creds: dict) -> dict:
-    cameras = sorted({int(c) for c in options.get("cameras") or []})
+    cameras = camera_numbers(options)
     if not cameras:
-        raise SystemExit("Aucune caméra configurée (option 'cameras').")
+        raise SystemExit("Aucune caméra configurée (option 'camera_count').")
     hd_video = options.get("hd_video", "copy")
     if hd_video not in HD_MODES:
         hd_video = "copy"
