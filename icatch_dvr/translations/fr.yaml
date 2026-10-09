@@ -1,0 +1,37 @@
+configuration:
+  dvr_host:
+    name: Adresse du DVR
+    description: Adresse IP ou nom de l'enregistreur sur le réseau local.
+  dvr_port:
+    name: Port web du DVR
+    description: Port de l'interface web de l'enregistreur (1027 sur l'iWatch, souvent 80 ailleurs).
+  username:
+    name: Identifiant
+    description: Compte utilisateur du DVR.
+  password:
+    name: Mot de passe
+    description: Mot de passe du compte utilisateur du DVR.
+  cameras:
+    name: Caméras
+    description: >-
+      Numéros des entrées caméra à exposer (1 à 16). Ajoutez un numéro quand vous
+      branchez une nouvelle caméra. Le journal de l'add-on liste au démarrage les
+      entrées où le DVR voit une image.
+  hd_video:
+    name: Vidéo HD
+    description: >-
+      copy = flux HD d'origine sans réencodage (H.265 sur les DVR récents, quelques
+      navigateurs ne savent pas l'afficher). h264_1080p = réencodage processeur en
+      H.264 réduit à 1080 lignes, compatible partout. h264 = réencodage processeur
+      en pleine résolution (le plus gourmand).
+  api_password:
+    name: Mot de passe go2rtc
+    description: >-
+      Facultatif. Sans valeur, l'add-on génère un mot de passe aléatoire et le
+      transmet à Home Assistant. Avec une valeur, l'utilisateur est « admin »
+      (utile pour ouvrir l'interface web go2rtc).
+  log_level:
+    name: Niveau de journalisation
+network:
+  1986/tcp: Interface web go2rtc (facultatif, pour tester les flux)
+  8586/tcp: Serveur RTSP (facultatif, pour un lecteur sur le réseau local)

@@ -1,0 +1,36 @@
+configuration:
+  dvr_host:
+    name: DVR address
+    description: IP address or host name of the recorder on your network.
+  dvr_port:
+    name: DVR web port
+    description: Port of the recorder's web interface (1027 on the iWatch, often 80 elsewhere).
+  username:
+    name: Username
+    description: DVR user account.
+  password:
+    name: Password
+    description: Password of the DVR user account.
+  cameras:
+    name: Cameras
+    description: >-
+      Camera inputs to expose (1 to 16). Add a number when you plug in a new
+      camera. At start-up the add-on log lists the inputs that carry a picture.
+  hd_video:
+    name: HD video
+    description: >-
+      copy = original HD stream, no re-encoding (H.265 on recent DVRs, which some
+      browsers cannot display). h264_1080p = CPU transcoding to H.264 scaled to
+      1080 lines, plays everywhere. h264 = CPU transcoding at full resolution
+      (heaviest).
+  api_password:
+    name: go2rtc password
+    description: >-
+      Optional. When empty, the add-on generates a random password and hands it
+      to Home Assistant. When set, the username is "admin" (handy to open the
+      go2rtc web UI).
+  log_level:
+    name: Log level
+network:
+  1986/tcp: go2rtc web UI (optional, to test the streams)
+  8586/tcp: RTSP server (optional, for a player on your network)

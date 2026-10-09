@@ -1,0 +1,58 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "iCatch DVR add-on",
+        "description": "Usually not needed: the iCatch DVR add-on announces itself to Home Assistant (\"New device discovered\" notification). For a manual setup, first set the add-on's \"api_password\" option, then enter the admin user and that password here. The host is the name shown at the top of the add-on log.",
+        "data": {
+          "host": "Add-on host",
+          "port": "go2rtc API port",
+          "rtsp_port": "RTSP port",
+          "username": "go2rtc username",
+          "password": "go2rtc password"
+        }
+      },
+      "hassio_confirm": {
+        "title": "iCatch DVR discovered",
+        "description": "Add the cameras of the {addon} add-on to Home Assistant?"
+      },
+      "cameras": {
+        "title": "Cameras",
+        "description": "The add-on exposes {count} camera(s). Tick the ones to add to Home Assistant: each gets an HD entity and a light \"Preview\" entity.",
+        "data": {
+          "cameras": "Cameras"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "The add-on does not answer at this address. Is it started?",
+      "invalid_auth": "go2rtc refused the API username or password.",
+      "no_cameras": "The add-on exposes no camera. Check its \"cameras\" option.",
+      "no_selection": "Select at least one camera."
+    },
+    "abort": {
+      "already_configured": "This add-on is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Cameras",
+        "description": "Cameras that get entities in Home Assistant. To offer more inputs here, add them first to the add-on's \"cameras\" option.",
+        "data": {
+          "cameras": "Cameras"
+        }
+      }
+    },
+    "error": {
+      "no_selection": "Select at least one camera."
+    }
+  },
+  "entity": {
+    "camera": {
+      "preview": {
+        "name": "Preview"
+      }
+    }
+  }
+}

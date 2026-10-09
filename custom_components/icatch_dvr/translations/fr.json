@@ -1,0 +1,58 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add-on iCatch DVR",
+        "description": "Normalement inutile : l'add-on iCatch DVR se signale tout seul à Home Assistant (notification « Nouvel appareil découvert »). Pour une saisie manuelle, définissez d'abord l'option « api_password » de l'add-on, puis entrez ici l'utilisateur admin et ce mot de passe. L'hôte est le nom affiché en tête du journal de l'add-on.",
+        "data": {
+          "host": "Hôte de l'add-on",
+          "port": "Port de l'API go2rtc",
+          "rtsp_port": "Port RTSP",
+          "username": "Utilisateur go2rtc",
+          "password": "Mot de passe go2rtc"
+        }
+      },
+      "hassio_confirm": {
+        "title": "DVR iCatch découvert",
+        "description": "Ajouter les caméras de l'add-on {addon} à Home Assistant ?"
+      },
+      "cameras": {
+        "title": "Caméras",
+        "description": "L'add-on expose {count} caméra(s). Cochez celles à ajouter à Home Assistant : chacune aura une entité HD et une entité légère « Aperçu ».",
+        "data": {
+          "cameras": "Caméras"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "L'add-on ne répond pas à cette adresse. Est-il démarré ?",
+      "invalid_auth": "go2rtc refuse l'identifiant ou le mot de passe de l'API.",
+      "no_cameras": "L'add-on n'expose aucune caméra. Vérifiez son option « cameras ».",
+      "no_selection": "Sélectionnez au moins une caméra."
+    },
+    "abort": {
+      "already_configured": "Cet add-on est déjà configuré."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Caméras",
+        "description": "Caméras qui ont des entités dans Home Assistant. Pour proposer d'autres entrées ici, ajoutez-les d'abord à l'option « cameras » de l'add-on.",
+        "data": {
+          "cameras": "Caméras"
+        }
+      }
+    },
+    "error": {
+      "no_selection": "Sélectionnez au moins une caméra."
+    }
+  },
+  "entity": {
+    "camera": {
+      "preview": {
+        "name": "Aperçu"
+      }
+    }
+  }
+}

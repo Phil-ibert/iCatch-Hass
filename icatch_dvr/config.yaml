@@ -1,0 +1,44 @@
+name: iCatch DVR
+version: "1.0.0"
+slug: icatch_dvr
+description: >-
+  Passerelle entre un enregistreur iCatch / iWatch et Home Assistant :
+  flux basse définition pour l'aperçu et haute définition à la demande, via go2rtc.
+url: https://github.com/Phil-ibert/iCatch-Hass
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: services
+boot: auto
+discovery:
+  - icatch_dvr
+ports:
+  1986/tcp: null
+  8586/tcp: null
+ports_description:
+  1986/tcp: Interface web go2rtc (facultatif, pour tester les flux)
+  8586/tcp: Serveur RTSP (facultatif, pour un lecteur sur le réseau local)
+options:
+  dvr_host: 192.168.1.108
+  dvr_port: 1027
+  username: admin
+  password: null
+  cameras:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+  hd_video: copy
+  log_level: info
+schema:
+  dvr_host: str
+  dvr_port: port
+  username: str
+  password: password
+  cameras:
+    - int(1,16)
+  hd_video: list(copy|h264_1080p|h264)
+  api_password: password?
+  log_level: list(debug|info|warning|error)

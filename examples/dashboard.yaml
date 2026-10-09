@@ -1,0 +1,60 @@
+# Mosaïque des caméras du DVR : aperçu basse définition en direct,
+# flux HD ouvert au clic.
+#
+# À coller dans une carte « Manuel » : Modifier le tableau de bord >
+# Ajouter une carte > Manuel.
+#
+# Noms d'entités créés par l'intégration (Home Assistant en français) :
+#   camera.camera_dvr_N          flux HD
+#   camera.camera_dvr_N_apercu   aperçu basse définition
+# En anglais : camera.dvr_camera_N et camera.dvr_camera_N_preview.
+# Vérifiez-les dans Paramètres > Appareils et services > iCatch DVR > Entités.
+#
+# Important : la carte pointe sur l'entité « aperçu » et le clic ouvre la HD.
+# L'inverse ne marche pas : quand « entity » est une caméra, la carte
+# picture-entity ignore « camera_image » et diffuse l'entité elle-même.
+
+type: grid
+columns: 3
+square: false
+cards:
+  - type: picture-entity
+    entity: camera.camera_dvr_1_apercu
+    camera_view: live
+    name: Caméra 1
+    show_state: false
+    tap_action:
+      action: more-info
+      entity: camera.camera_dvr_1
+  - type: picture-entity
+    entity: camera.camera_dvr_2_apercu
+    camera_view: live
+    name: Caméra 2
+    show_state: false
+    tap_action:
+      action: more-info
+      entity: camera.camera_dvr_2
+  - type: picture-entity
+    entity: camera.camera_dvr_3_apercu
+    camera_view: live
+    name: Caméra 3
+    show_state: false
+    tap_action:
+      action: more-info
+      entity: camera.camera_dvr_3
+  - type: picture-entity
+    entity: camera.camera_dvr_4_apercu
+    camera_view: live
+    name: Caméra 4
+    show_state: false
+    tap_action:
+      action: more-info
+      entity: camera.camera_dvr_4
+  - type: picture-entity
+    entity: camera.camera_dvr_5_apercu
+    camera_view: live
+    name: Caméra 5
+    show_state: false
+    tap_action:
+      action: more-info
+      entity: camera.camera_dvr_5

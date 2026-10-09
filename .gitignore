@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+# captures of a real DVR: they contain camera footage, keep them out of git
+*.bin
+dvr_*_hdr.txt
